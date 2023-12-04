@@ -16,7 +16,7 @@ pub struct StakingRuleCreate<'info> {
         bump,
         space = StakingRules::space()
     )]
-    pub rules: Account<'info, StakingRules>,
+    pub staking_rule: Account<'info, StakingRules>,
 
     #[account(
         mint::authority = collection_master_edition,
@@ -43,10 +43,11 @@ pub struct StakingRuleCreate<'info> {
         bump,
     )]
     pub collection_master_edition: Account<'info, MasterEditionAccount>,
-    pub token_metadata_program: Program<'info, Metadata>,
 
     #[account(mut)]
     pub initializer: Signer<'info>,
+
+    pub token_metadata_program: Program<'info, Metadata>,
     pub system_program: Program<'info, System>,
 }
 
@@ -57,10 +58,10 @@ impl<'info> StakingRuleCreate<'info> {
         bumps: &StakingRuleCreateBumps
     ) -> Result<()> {
 
-        self.rules.authority = self.initializer.key();
-        self.rules.collection_address = self.collection_mint.key();
-        self.rules.reward_per_unix = reward_per_unix;
-        self.rules.bump = bumps.rules;
+        self.staking_rule.authority = self.initializer.key();
+        self.staking_rule.collection_address = self.collection_mint.key();
+        self.staking_rule.reward_per_unix = reward_per_unix;
+        self.staking_rule.bump = bumps.staking_rule;
 
         Ok(())
     }

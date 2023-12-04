@@ -150,12 +150,12 @@ describe("nft-staking", () => {
 
       const signature = await program.methods.createStakingRule(rewardPerUnix)
       .accounts({
-        rules: stakingRuleAddress,
+        stakingRule: stakingRuleAddress,
         collectionMint: collectionMint,
         collectionMetadata: collectionMetadata,
         collectionMasterEdition: collectionMasterEdition,
-        tokenMetadataProgram: new PublicKey(MPL_TOKEN_METADATA_PROGRAM_ID),
         initializer: keypair.publicKey,
+        tokenMetadataProgram: new PublicKey(MPL_TOKEN_METADATA_PROGRAM_ID),
         systemProgram: SystemProgram.programId,        
       })
       .signers([keypair]).rpc().then(confirm).then(log);
@@ -293,11 +293,11 @@ describe("nft-staking", () => {
       nftMint: nftMint,
       nftMetadata: nftMetadata,
       nftMasterEdition: nftMasterEdition,
+      signer: keypair.publicKey,
       signerAta: nftATA,
       tokenProgram: TOKEN_PROGRAM_ID,
       tokenMetadataProgram: new PublicKey(MPL_TOKEN_METADATA_PROGRAM_ID),
       associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
-      signer: keypair.publicKey,
       systemProgram: SystemProgram.programId,        
     })
     .signers([keypair]).rpc().then(confirm).then(log);
@@ -315,8 +315,8 @@ describe("nft-staking", () => {
       nftMint: nftMint,
       nftMetadata: nftMetadata,
       nftMasterEdition: nftMasterEdition,
-      tokenMetadataProgram: new PublicKey(MPL_TOKEN_METADATA_PROGRAM_ID),
       signer: keypair.publicKey,
+      tokenMetadataProgram: new PublicKey(MPL_TOKEN_METADATA_PROGRAM_ID),
       systemProgram: SystemProgram.programId,        
     })
     .signers([keypair]).rpc().then(confirm).then(log);
@@ -334,11 +334,11 @@ describe("nft-staking", () => {
       nftMint: nftMint,
       nftMetadata: nftMetadata,
       nftMasterEdition: nftMasterEdition,
+      signer: keypair.publicKey,
       signerAta: nftATA,
       tokenProgram: TOKEN_PROGRAM_ID,
       tokenMetadataProgram: new PublicKey(MPL_TOKEN_METADATA_PROGRAM_ID),
       associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
-      signer: keypair.publicKey,
       systemProgram: SystemProgram.programId,        
     })
     .signers([keypair]).rpc().then(confirm).then(log);

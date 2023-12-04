@@ -11,7 +11,7 @@ use crate::{state::{StakingRules, StakingAccount, StakingInstance}, errors::Stak
 #[derive(Accounts)]
 pub struct Unstake<'info> {
     #[account(
-        mut, 
+        mut,
         seeds = [b"rules", staking_rules.collection_address.as_ref()], 
         bump = staking_rules.bump,
     )]
@@ -66,6 +66,8 @@ pub struct Unstake<'info> {
     )]
     pub nft_master_edition: Account<'info, MasterEditionAccount>,
 
+    #[account(mut)]
+    pub signer: Signer<'info>,
     #[account(
         init_if_needed,
         payer = signer,
@@ -77,9 +79,6 @@ pub struct Unstake<'info> {
     pub token_program: Program<'info, Token>,
     pub token_metadata_program: Program<'info, Metadata>,
     pub associated_token_program: Program<'info, AssociatedToken>,
-
-    #[account(mut)]
-    pub signer: Signer<'info>,
     pub system_program: Program<'info, System>,
 }
 

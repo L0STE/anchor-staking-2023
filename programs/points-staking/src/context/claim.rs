@@ -7,7 +7,6 @@ use crate::{state::{StakingRules, StakingAccount, StakingInstance}, errors::Stak
 #[derive(Accounts)]
 pub struct Claim<'info> {
     #[account(
-        mut, 
         seeds = [b"rules", staking_rules.collection_address.as_ref()], 
         bump = staking_rules.bump,
     )]
@@ -59,10 +58,11 @@ pub struct Claim<'info> {
         bump,
     )]
     pub nft_master_edition: Account<'info, MasterEditionAccount>,
-    pub token_metadata_program: Program<'info, Metadata>,
 
     #[account(mut)]
     pub signer: Signer<'info>,
+    
+    pub token_metadata_program: Program<'info, Metadata>,
     pub system_program: Program<'info, System>,
 }
 

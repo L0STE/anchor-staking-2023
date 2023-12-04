@@ -5,7 +5,6 @@ use crate::state::{StakingRules, StakingAccount};
 #[derive(Accounts)]
 pub struct StakingAccountCreate<'info> {
     #[account(
-        mut,
         seeds = [b"rules", staking_rules.collection_address.as_ref()], 
         bump = staking_rules.bump,
     )]
