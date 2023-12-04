@@ -8,6 +8,8 @@ Start up a test validator (NB: needs to support metaplex program to work with NF
 solana-test-validator -r --bpf-program metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s metadata.so
 ```
 
+or if you want a more permanent solution for testing using metaplex refer to this gist: https://gist.github.com/deanmlittle/e607650c80c80203116638ae0dd3c63f
+
 Then run:
 ```
 anchor build
